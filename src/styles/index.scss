@@ -1,4 +1,3 @@
-@import 'normalize';
 @import 'typography';
 @import 'variables';
 @import 'breakpoints';
@@ -7,3 +6,9 @@
 @import 'app';
 @import 'container';
 @import 'error';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
