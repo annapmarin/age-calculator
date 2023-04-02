@@ -1,0 +1,16 @@
+
+.error-invalid-date {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--light-red);
+    margin-top: 1rem;
+    position: absolute;
+    top: 9rem;
+    font-size: 1.2rem;
+    opacity: 0;
+    
+    @include media("medium") {
+      top: 13.5rem;
+      font-size: 1.4rem;
+    }
+  }

@@ -1,0 +1,127 @@
+.container {
+  width: 35rem;
+  height: 45rem;
+  background-color: var(--white);
+  border-radius: 2rem 2rem 10rem 2rem;
+  padding: 2rem;
+  position: relative;
+
+  @include media("medium") {
+    width: 76rem;
+    height: 57rem;
+    padding: 5rem;
+  }
+
+  &__labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    @include media("medium") {
+      width: 51rem;
+    }
+
+    p {
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--smokey-grey);
+      font-size: 1.2rem;
+      letter-spacing: 0.3rem;
+      padding-left: 0.5rem;
+    }
+  }
+
+  &__inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: .5rem;
+
+    @include media("medium") {
+      width: 51rem;
+    }
+
+    input {
+      height: 5rem;
+      width: 7rem;
+      border-radius: 1rem;
+      border: 0.1rem solid var(--light-grey);
+      font-size: 1.8rem;
+      font-weight: 800;
+      padding-left: 1rem;
+
+     @include media("medium") {
+      height: 6rem;
+      width: 13rem;
+      font-size: 3rem;
+     } 
+    }
+  }
+
+  &__separator {
+    margin: 6rem 0;
+    border: .12rem solid var(--off-white);
+
+    @include media("medium") {
+      margin: 5rem 0 3rem 0;
+    }
+
+    &__image {
+      width: 3rem;
+      height: 3rem;
+
+      @include media("medium") {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+
+    &__button {
+      padding: 1.8rem;
+      border-radius: 50%;
+      background-color: var(--purple);
+      position: absolute;
+      top: 11.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      border: none;
+      transition: 300ms ease;
+
+      @include media("medium") {
+        padding: 2.5rem;
+        left: 90%;
+        top: 13.5rem;
+      }
+
+      &:hover {
+        box-shadow: 0 0 2rem var(--purple);
+      }
+      
+    }
+  }
+
+  &__data {
+    p {
+      font-size: 5.5rem;
+      color: var(--off-black);
+      font-weight: 800;
+      font-style: italic;
+
+      @include media("medium") {
+        font-size: 9.5rem;
+      }
+    }
+
+    span {
+      font-size: 6rem;
+      color: var(--purple);
+      margin-bottom: -1.5rem;
+      transition: 200ms ease;
+
+      @include media("medium") {
+        font-size: 9.5rem;
+      }
+    }
+
+  }
+}
