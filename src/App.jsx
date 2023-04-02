@@ -2,6 +2,14 @@ import "./styles/index.css";
 import iconArrow from "./assets/images/icon-arrow.svg";
 import { useEffect, useState } from "react";
 
+/*
+  TODO 
+  ( ) condicionales si el día añadido no existe (ej. 31 de febrero)
+  ( ) añadir estilos de error si la fecha no es válida (tanto día según mes, número de mes o año)
+  ( ) el botón se pulsa si se aprieta 'Enter' (creo que OnKeyDown necesita un onChange)
+
+*/
+
 function App() {
   const [day, setDay] = useState("--");
   const [month, setMonth] = useState("--");
@@ -9,7 +17,6 @@ function App() {
   const [calcYear, setCalcYear] = useState("--");
   const [calcMonth, setCalcMonth] = useState("--");
   const [calcDay, setCalcDay] = useState("--");
-  //const [errorInvalidDate, setErrorInvalidDate] = useState()
 
   const date = new Date();
   const actualYear = date.getFullYear();
@@ -29,69 +36,81 @@ function App() {
   };
 
   const handleYear = (event) => {
-    if (Number(event.target.value) > 1900 && Number(event.target.value) <= actualYear) {
+    if (
+      Number(event.target.value) > 1900 &&
+      Number(event.target.value) <= actualYear
+    ) {
       setYear(Number(event.target.value));
     }
-
   };
 
   const calculator = () => {
     // calc year
-    if (actualMonth < month) {
-      setCalcYear(actualYear - year - 1);
-    } else if (actualMonth > month) {
-      setCalcYear(actualYear - year);
-    } else if (actualMonth === month) {
-      if (actualDay < day) {
+    if (year > 1900 && year <= actualYear) {
+      if (actualMonth < month) {
         setCalcYear(actualYear - year - 1);
-      } else if (actualDay >= day) {
+      } else if (actualMonth > month) {
         setCalcYear(actualYear - year);
+      } else if (actualMonth === month) {
+        if (actualDay < day) {
+          setCalcYear(actualYear - year - 1);
+        } else if (actualDay >= day) {
+          setCalcYear(actualYear - year);
+        }
       }
     }
+
     // calc month
-    if (actualMonth < month) {
-      switch (month) {
-        case 1:
-          setCalcMonth(0);
-          break;
-        case 2:
-          setCalcMonth(11 - actualMonth);
-          break;
-        case 3:
-          setCalcMonth(10 + actualMonth);
-          break;
-        case 4:
-          setCalcMonth(9 + actualMonth - 2);
-          break;
-        case 5:
-          setCalcMonth(8 + actualMonth - 2);
-          break;
-        case 6:
-          setCalcMonth(7 + actualMonth - 2);
-          break;
-        case 7:
-          setCalcMonth(6 + actualMonth - 2);
-          break;
-        case 8:
-          setCalcMonth(5 + actualMonth - 2);
-          break;
-        case 9:
-          setCalcMonth(4 + actualMonth - 2);
-          break;
-        case 10:
-          setCalcMonth(3 + actualMonth - 2);
-          break;
-        case 11:
-          setCalcMonth(2 + actualMonth - 2);
-          break;
-        case 12:
-          setCalcMonth(1 + actualMonth - 2);
-          break;
-      }
-    } else if (actualMonth > month) {
-      setCalcMonth(actualMonth - month - 1);
-    } else if (actualMonth === month) {
-      setCalcMonth("--");
+    if (month > 0 && month < 13) {
+      if (actualMonth < month) {
+        console.log(actualMonth + ' es menor que ' + month)
+        switch (month) {
+          case 1:
+            setCalcMonth(0);
+            break;
+          case 2:
+            setCalcMonth(11 - actualMonth);
+            break;
+          case 3:
+            setCalcMonth(10 + actualMonth);
+            break;
+          case 4:
+            setCalcMonth(9 + actualMonth - 2);
+            break;
+          case 5:
+            setCalcMonth(8 + actualMonth - 2);
+            break;
+          case 6:
+            setCalcMonth(7 + actualMonth - 2);
+            break;
+          case 7:
+            setCalcMonth(6 + actualMonth - 2);
+            break;
+          case 8:
+            setCalcMonth(5 + actualMonth - 2);
+            break;
+          case 9:
+            setCalcMonth(4 + actualMonth - 2);
+            break;
+          case 10:
+            setCalcMonth(3 + actualMonth - 2);
+            break;
+          case 11:
+            setCalcMonth(2 + actualMonth - 2);
+            break;
+          case 12:
+            setCalcMonth(1 + actualMonth - 2);
+            break;
+        }
+      } else if (actualMonth > month) {
+        if(actualMonth - month - 1 === 0) {
+          setCalcMonth("--");
+        } else {
+          setCalcMonth(actualMonth - month - 1);
+        }
+      } else if (actualMonth === month) {
+        setCalcMonth("--");
+      } 
     }
     // calc day
     if (actualDay < day) {
