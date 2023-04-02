@@ -62,79 +62,51 @@ function App() {
 
     // calc month
     if (month > 0 && month < 13) {
-      if (actualMonth < month) {
-        console.log(actualMonth + ' es menor que ' + month)
-        switch (month) {
-          case 1:
-            setCalcMonth(0);
-            break;
-          case 2:
-            setCalcMonth(11 - actualMonth);
-            break;
-          case 3:
-            setCalcMonth(10 + actualMonth);
-            break;
-          case 4:
-            setCalcMonth(9 + actualMonth - 2);
-            break;
-          case 5:
-            setCalcMonth(8 + actualMonth - 2);
-            break;
-          case 6:
-            setCalcMonth(7 + actualMonth - 2);
-            break;
-          case 7:
-            setCalcMonth(6 + actualMonth - 2);
-            break;
-          case 8:
-            setCalcMonth(5 + actualMonth - 2);
-            break;
-          case 9:
-            setCalcMonth(4 + actualMonth - 2);
-            break;
-          case 10:
-            setCalcMonth(3 + actualMonth - 2);
-            break;
-          case 11:
-            setCalcMonth(2 + actualMonth - 2);
-            break;
-          case 12:
-            setCalcMonth(1 + actualMonth - 2);
-            break;
-        }
-      } else if (actualMonth > month) {
-        if(actualMonth - month - 1 === 0) {
-          setCalcMonth("--");
-        } else {
-          setCalcMonth(actualMonth - month - 1);
-        }
-      } else if (actualMonth === month) {
-        setCalcMonth("--");
-      } 
-    }
-    // calc day
-    if (actualDay < day) {
-      if (
-        month === 1 ||
-        month === 3 ||
-        month === 5 ||
-        month === 7 ||
-        month === 8 ||
-        month === 10 ||
-        month === 12
-      ) {
-        setCalcDay(31 - day + actualDay);
-      } else if (month === 2 && year % 4 === 0) {
-        setCalcDay(29 - day + actualDay);
-      } else if (month === 2 && year % 4 !== 0) {
-        setCalcDay(28 - day + actualDay);
-      } else if (month === 4 || month === 6 || month === 9 || month === 11) {
-        setCalcDay(30 - day + actualDay);
+      if (actualMonth < month && actualDay >= day) {
+        setCalcMonth(12 - month + actualMonth);
+      } else if (actualMonth <= month && actualDay < day) {
+        setCalcMonth(11 - month + actualMonth);
+      } else if (actualMonth >= month && actualDay >= day) {
+        setCalcMonth(actualMonth - month);
+      } else if (actualMonth > month && actualDay < day) {
+        setCalcMonth(actualMonth - month - 1);
       }
-    } else if (actualDay > day) {
-      setCalcDay(actualDay - day);
-    } else if (actualDay === day) {
-      setCalcDay("--");
+    }
+
+    // calc day
+    if (day > 0 && day < 32) {
+      if (
+        actualDay < day && actualMonth === 1 ||
+        actualDay < day && actualMonth === 2 ||
+        actualDay < day && actualMonth === 4 ||
+        actualDay < day && actualMonth === 6 ||
+        actualDay < day && actualMonth === 8 ||
+        actualDay < day && actualMonth === 9 ||
+        actualDay < day && actualMonth === 11
+      ) {
+        // console.log(actualDay + ' es menor que ' + day + ' mes de 31 días')
+        setCalcDay(31 - day + actualDay);
+      } else if (
+        actualDay < day && actualMonth === 5 ||
+        actualDay < day && actualMonth === 7 ||
+        actualDay < day && actualMonth === 10 ||
+        actualDay < day && actualMonth === 12
+      ) {
+        // console.log(actualDay + ' es menor que ' + day + ' mes de 30 días')
+        setCalcDay(30 - day + actualDay);
+      } else if (actualDay < day && actualMonth === 3 && actualYear % 4 === 0) {
+        // console.log(actualDay + ' es menor que ' + day + 'bisiesto')
+        setCalcDay(29 - day + actualDay);
+      } else if (actualDay < day && actualMonth === 3 && actualYear % 4 !== 0) {
+        // console.log(actualDay + ' es menor que ' + day + 'no bisiesto')
+        setCalcDay(28 - day + actualDay);
+      } else if (actualDay > day) {
+        // console.log(actualDay + ' es menor que ' + day)
+        setCalcDay(actualDay - day);
+      } else if (actualDay === day) {
+        // console.log(actualDay + ' es igual que ' + day)
+        setCalcDay("--");
+      }
     }
   };
 
