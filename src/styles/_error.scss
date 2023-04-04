@@ -1,16 +1,80 @@
 
 .error-invalid-date {
+
+    &__day {
     font-weight: 400;
     font-style: italic;
     color: var(--light-red);
     margin-top: 1rem;
     position: absolute;
     top: 9rem;
-    font-size: 1.2rem;
-    opacity: 0;
-    
-    @include media("medium") {
-      top: 13.5rem;
-      font-size: 1.4rem;
+    font-size: .8rem;
+
+      @include media("medium") {
+        top: 13.5rem;
+        font-size: 1.4rem;
+      }
     }
+
+    &__month {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--light-red);
+      margin-top: 1rem;
+      position: absolute;
+      top: 9rem;
+      font-size: .8rem;
+      left: 12.5rem;
+
+      @include media("medium") {
+        top: 13.5rem;
+        font-size: 1.4rem;
+        left: 22rem;
+      }
+    }
+
+    &__year {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--light-red);
+      margin-top: 1rem;
+      position: absolute;
+      top: 9rem;
+      font-size: .8rem;
+      left: 23rem;
+
+      @include media("medium") {
+        top: 13.5rem;
+        font-size: 1.4rem;
+        left: 39rem;
+      }
+    }
+
+    &__input-day {
+      border: 1px solid var(--light-red) !important;
+    }
+
+    &__input-month {
+      border: 1px solid var(--light-red) !important;
+    }
+
+    &__input-year {
+      border: 1px solid var(--light-red) !important;
+    }
+
+    &__label-day {
+      color: var(--light-red) !important;
+    }
+
+    &__label-month {
+      color: var(--light-red) !important;
+    }
+
+    &__label-year {
+      color: var(--light-red) !important;
+    }
+  }
+
+  .error-invalid-date-disabled {
+    opacity: 0;
   }

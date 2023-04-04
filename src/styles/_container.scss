@@ -106,6 +106,7 @@
       color: var(--off-black);
       font-weight: 800;
       font-style: italic;
+      line-height: 1.1;
 
       @include media("medium") {
         font-size: 9.5rem;
@@ -122,6 +123,5 @@
         font-size: 9.5rem;
       }
     }
-
   }
 }
