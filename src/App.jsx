@@ -77,7 +77,7 @@ function App() {
     }
 
     // calc year
-    if (year <= actualYear && year !== 0) {
+    if (year <= actualYear && year !== 0 && year !== '') {
       if (actualMonth < month) {
         setCalcYear(actualYear - year - 1);
       } else if (actualMonth > month) {
