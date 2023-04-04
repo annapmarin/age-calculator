@@ -66,14 +66,18 @@ function App() {
     // check if the inputs are void
     if (day === '' || day === 0) {
       setErrorVoidDay(true);
-    } else if (month === '' || month === 0) {
+    }
+
+    if(month === '' || month === 0) {
       setErrorVoidMonth(true);
-    } else if (year === '' || year === 0) {
+    }
+
+    if(year=== '' || year === 0) {
       setErrorVoidYear(true);
     }
 
     // calc year
-    if (year <= actualYear) {
+    if (year <= actualYear && year !== 0) {
       if (actualMonth < month) {
         setCalcYear(actualYear - year - 1);
       } else if (actualMonth > month) {
@@ -88,7 +92,7 @@ function App() {
     }
 
     // calc month
-    if (month > 0 && month < 13) {
+    if (month > 0 && month < 13 && month !== 0) {
       if (actualMonth < month && actualDay >= day) {
         setCalcMonth(12 - month + actualMonth);
       } else if (actualMonth <= month && actualDay < day) {
@@ -101,7 +105,7 @@ function App() {
     }
 
     // calc day
-    if (day > 0 && day < 32) {
+    if (day > 0 && day < 32 && day !== 0) {
       if (
         (actualDay < day && actualMonth === 1) ||
         (actualDay < day && actualMonth === 2) ||
@@ -150,7 +154,7 @@ function App() {
             </p>
             <p
               className={`${
-                errorInvalidMonth ? "error-invalid-date__label-month" : (errorInvalidMonth ? "error-invalid-date__label-month" : "")
+                errorInvalidMonth ? "error-invalid-date__label-month" : (errorVoidMonth ? "error-invalid-date__label-month" : "")
               }`}
             >
               month
@@ -166,7 +170,7 @@ function App() {
           <div className="container__inputs">
             <input
               className={`${
-                errorInvalidDate ? "error-invalid-date__input-day" : (errorVoidDay ? "error-invalid-date__input-day" : "")
+                errorInvalidDay ? "error-invalid-date__input-day" : (errorVoidDay ? "error-invalid-date__input-day" : "")
               }`}
               onChange={handleDay}
               onBlur={handleDay}
@@ -174,7 +178,7 @@ function App() {
             />
             <input
               className={`${
-                errorInvalidDate ? "error-invalid-date__input-month" : (errorInvalidMonth ? "error-invalid-date__input-month" : "")
+                errorInvalidMonth ? "error-invalid-date__input-month" : (errorVoidMonth ? "error-invalid-date__input-month" : "")
               }`}
               onChange={handleMonth}
               onBlur={handleMonth}
@@ -183,7 +187,7 @@ function App() {
             />
             <input
               className={`${
-                errorInvalidDate ? "error-invalid-date__input-year" : (errorVoidYear ? "error-invalid-date__input-year" : "")
+                errorInvalidYear ? "error-invalid-date__input-year" : (errorVoidYear ? "error-invalid-date__input-year" : "")
               }`}
               onChange={handleYear}
               onBlur={handleYear}
